@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nvanglkntsy_ ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg,#fff0f5,#fce1eb,#fff7fa);
+  color: #985d76;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 35px 20px;
+  animation: fade .7s ease;
+}
+
+.page.active {
+  display: flex;
+}
+
+@keyframes fade {
+  from {opacity:0; transform:translateY(15px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+.center {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1,h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: clamp(38px,9vw,65px);
+  color: #c46d91;
+}
+
+h2 {
+  font-size: 34px;
+  color: #c46d91;
+}
+
+.subtitle {
+  letter-spacing: 3px;
+  font-size: 11px;
+  margin-bottom: 18px;
+  color: #bd829a;
+}
+
+.heart {
+  font-size: 65px;
+  margin: 22px;
+  animation: beat 1.3s infinite;
+}
+
+@keyframes beat {
+  50% {transform:scale(1.2);}
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: .3s;
+}
+
+.main-btn {
+  background: #d88eaa;
+  color: white;
+  padding: 13px 28px;
+  border-radius: 30px;
+  margin-top: 25px;
+  box-shadow: 0 6px 18px #d88eaa55;
+}
+
+.main-btn:hover {
+  transform: translateY(-3px);
+  background: #c87598;
+}
+
+.small-text {
+  font-size: 13px;
+  margin-top: 14px;
+  color: #b77c94;
+}
+
+.top {
+  text-align: center;
+  width: 100%;
+  margin: 10px auto 28px;
+}
+
+.gallery-page {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-page.active {
+  display: flex;
+}
+
+.gallery {
+  width: 100%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 17px;
+}
+
+.photo-card {
+  background: #fffafd;
+  padding: 10px 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px #c77e9c20;
+  text-align: center;
+  transition: .3s;
+}
+
+.photo-card:hover {
+  transform: translateY(-5px) rotate(-1deg);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #f6dce7;
+}
+
+.number {
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-top: 12px;
+  color: #c68aa2;
+}
+
+.phrase {
+  font-family: 'Playfair Display',serif;
+  font-size: 17px;
+  font-style: italic;
+  margin-top: 5px;
+  color: #a85f7d;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 35px 0 10px;
+}
+
+.nav-btn {
+  background: #d88eaa;
+  color: white;
+  padding: 11px 24px;
+  border-radius: 25px;
+}
+
+.nav-btn:hover {
+  background: #bf6d91;
+  transform: scale(1.04);
+}
+
+.music {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  background: #d88eaa;
+  color: white;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  font-size: 19px;
+  z-index: 10;
+  box-shadow: 0 4px 15px #b76c8d55;
+}
+
+.floating {
+  position: fixed;
+  bottom: -30px;
+  color: #e6a2bc;
+  pointer-events: none;
+  animation: floatUp 7s linear forwards;
+  z-index: 0;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.final-heart {
+  font-size: 85px;
+  animation: beat 1.4s infinite;
+  margin: 25px;
+}
+
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #3d1e2edb;
+  z-index: 20;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#lightbox img {
+  max-width: 95%;
+  max-height: 85vh;
+  border-radius: 15px;
+}
+
+@media(min-width:650px) {
+  .gallery {grid-template-columns:repeat(3,1fr);}
+  .photo-card img {height:230px;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HALAMAN 1 -->
+<section class="page center active" id="page1">
+  <div class="subtitle">A LITTLE WEBSITE ABOUT US</div>
+  <h1>Novaa <span style="font-style:italic">Angelikaa</span><br>Natasyaa</h1>
+  <div class="heart">♡</div>
+  <p class="small-text">A thousand memories, one special person.</p>
+  <button class="main-btn" onclick="nextPage(2)">
+    Open Our Memories ♡
+  </button>
+  <p class="small-text">made with love, just for you</p>
+</section>
+
+<!-- HALAMAN 2 -->
+<section class="page gallery-page" id="page2">
+  <div class="top">
+    <div class="subtitle">OUR LITTLE WORLD</div>
+    <h2>Our Memories ♡</h2>
+    <p class="small-text">Every picture has a little piece of my heart.</p>
+  </div>
+
+  <div class="gallery" id="gallery"></div>
+
+  <div class="navigation">
+    <button class="nav-btn" onclick="nextPage(1)">← Back</button>
+    <button class="nav-btn" onclick="nextPage(3)">Next →</button>
+  </div>
+</section>
+
+<!-- HALAMAN 3 -->
+<section class="page center" id="page3">
+  <div class="subtitle">JUST FOR YOU</div>
+  <h2>Forever Us</h2>
+  <div class="final-heart">💗</div>
+  <h1 style="font-size:38px">I love you<br>moreee ♡</h1>
+  <p class="small-text">You're my favorite person.</p>
+  <p class="small-text">My one and only, Angelika.</p>
+  <button class="main-btn" onclick="nextPage(1)">
+    Back to Beginning ♡
+  </button>
+</section>
+
+<button class="music" onclick="toggleMusic()" id="musicBtn">♫</button>
+
+<div id="lightbox" onclick="this.style.display='none'">
+  <img id="largePhoto" src="" alt="Our memory">
+</div>
+
+<script>
+const photos = [
+  {src:"foto1.jpg", text:"I love youu moreee"},
+  {src:"foto2.jpg", text:"You're my favorite person"},
+  {src:"foto3.jpg", text:"My pretty girl"},
+  {src:"foto4.jpg", text:"I choose you"},
+  {src:"foto5.jpg", text:"You are my happiness"},
+  {src:"foto6.jpg", text:"My one and only"},
+  {src:"foto7.jpg", text:"Forever with you"},
+  {src:"foto8.jpg", text:"I adore you"},
+  {src:"foto9.jpg", text:"Lucky to have you"},
+  {src:"foto10.jpg", text:"You're my home"},
+  {src:"foto11.jpg", text:"More than words"},
+  {src:"foto12.jpg", text:"I love you endlessly"}
+];
+
+const gallery = document.getElementById("gallery");
+
+photos.forEach((photo,index) => {
+  const card = document.createElement("div");
+  card.className = "photo-card";
+
+  const img = document.createElement("img");
+  img.src = photo.src;
+  img.alt = "Memory " + (index+1);
+  img.loading = "lazy";
+  img.onclick = () => {
+    document.getElementById("largePhoto").src = photo.src;
+    document.getElementById("lightbox").style.display = "flex";
+  };
+
+  const number = document.createElement("div");
+  number.className = "number";
+  number.textContent = "MEMORY " + String(index+1).padStart(2,"0");
+
+  const phrase = document.createElement("div");
+  phrase.className = "phrase";
+  phrase.textContent = photo.text;
+
+  card.append(img,number,phrase);
+  gallery.appendChild(card);
+});
+
+function nextPage(number) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+  document.getElementById("page"+number).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+const music = document.getElementById("music");
+
+function toggleMusic() {
+  if(music.paused) {
+    music.play().then(() => {
+      document.getElementById("musicBtn").textContent = "♫";
+    }).catch(() => {});
+  } else {
+    music.pause();
+    document.getElementById("musicBtn").textContent = "♪";
+  }
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "floating";
+  heart.textContent = ["♡","♥","💕","💗"][Math.floor(Math.random()*4)];
+  heart.style.left = Math.random()*100+"vw";
+  heart.style.fontSize = (15+Math.random()*20)+"px";
+  heart.style.animationDuration = (5+Math.random()*5)+"s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(),10000);
+}
+
+setInterval(createHeart,900);
+</script>
+
+</body>
+</html>
